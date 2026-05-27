@@ -2,6 +2,8 @@
 
 import styled from 'styled-components'
 import { theme } from '@/lib/theme'
+import { Phone } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
 
 const Bar = styled.div`
   background: ${theme.colors.dark};
@@ -31,7 +33,7 @@ const Left = styled.div`
   align-items: center;
 `
 
-const Link = styled.a`
+const PhoneLink = styled.a`
   color: rgba(255, 255, 255, 0.65);
   display: flex;
   align-items: center;
@@ -43,15 +45,29 @@ const Link = styled.a`
   }
 `
 
+const WALink = styled.a`
+  color: ${theme.colors.whatsapp};
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.8;
+  }
+`
+
 export default function TopBar() {
   return (
     <Bar>
       <Inner>
         <Left>
-          <Link href="tel:+420608259151">📞 +420 608 259 151</Link>
-          <Link href="https://wa.me/420608259151" target="_blank" rel="noopener noreferrer">
-            💬 WhatsApp
-          </Link>
+          <PhoneLink href="tel:+420608259151">
+            <Phone size={13} /> +420 608 259 151
+          </PhoneLink>
+          <WALink href="https://wa.me/420608259151" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp size={14} /> WhatsApp
+          </WALink>
         </Left>
         <span>Po–Pá: 8:00–17:00&nbsp;&nbsp;|&nbsp;&nbsp;So: podle domluvy</span>
       </Inner>
