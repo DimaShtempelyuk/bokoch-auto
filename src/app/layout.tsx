@@ -6,7 +6,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
 
 export const metadata: Metadata = {
-  title: "Autoservis Bokoch — Brandýs nad Labem",
+  title: "Autoservis Bokoch — Brandýs nad Labem-Stará Boleslav",
   description:
     "Opravy a lakování vozidel do 3,5 t, použité náhradní díly, přezutí pneumatik a výkup havarovaných aut v Brandýse nad Labem.",
   keywords:

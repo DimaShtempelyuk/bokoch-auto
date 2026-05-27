@@ -91,9 +91,9 @@ export default function Hero() {
           značky. Použité díly za rozumné ceny.
         </Subtitle>
         <Buttons>
-          <PrimaryBtn href="tel:+420000000000">📞 Zavolat</PrimaryBtn>
+          <PrimaryBtn href="tel:+420608259151">📞 Zavolat</PrimaryBtn>
           <SecondaryBtn
-            href="https://wa.me/420000000000"
+            href="https://wa.me/420608259151"
             target="_blank"
             rel="noopener noreferrer"
           >

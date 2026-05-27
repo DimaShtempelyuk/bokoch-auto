@@ -252,21 +252,21 @@ export default function Contact() {
             <InfoCard>
               <InfoGroup>
                 <InfoLabel>Telefon</InfoLabel>
-                <InfoLink href="tel:+420000000000">📞 +420 000 000 000</InfoLink>
+                <InfoLink href="tel:+420608259151">📞 +420 608 259 151</InfoLink>
               </InfoGroup>
               <InfoGroup>
                 <InfoLabel>WhatsApp</InfoLabel>
                 <InfoLink
-                  href="https://wa.me/420000000000"
+                  href="https://wa.me/420608259151"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  💬 +420 000 000 000
+                  💬 +420 608 259 151
                 </InfoLink>
               </InfoGroup>
               <InfoGroup>
                 <InfoLabel>Adresa</InfoLabel>
-                <InfoText>📍 Brandýs nad Labem — [doplnit ulici]</InfoText>
+                <InfoText>📍 Mariánské nám. 4/3, 250 01 Brandýs nad Labem-Stará Boleslav</InfoText>
               </InfoGroup>
               <InfoGroup>
                 <InfoLabel>Provozní doba</InfoLabel>

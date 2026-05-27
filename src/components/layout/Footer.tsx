@@ -44,10 +44,10 @@ export default function Footer() {
     <Foot>
       <Inner>
         <Logo>
-          <span>Vasyl</span> Auto
+          <span>Autoservis</span> Bokoch
         </Logo>
         <span>© {new Date().getFullYear()} Autoservis Bokoch — Brandýs nad Labem</span>
-        <PhoneLink href="tel:+420000000000">+420 000 000 000</PhoneLink>
+        <PhoneLink href="tel:+420608259151">+420 608 259 151</PhoneLink>
       </Inner>
     </Foot>
   )

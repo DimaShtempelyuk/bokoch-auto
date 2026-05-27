@@ -48,8 +48,8 @@ export default function TopBar() {
     <Bar>
       <Inner>
         <Left>
-          <Link href="tel:+420000000000">📞 +420 000 000 000</Link>
-          <Link href="https://wa.me/420000000000" target="_blank" rel="noopener noreferrer">
+          <Link href="tel:+420608259151">📞 +420 608 259 151</Link>
+          <Link href="https://wa.me/420608259151" target="_blank" rel="noopener noreferrer">
             💬 WhatsApp
           </Link>
         </Left>
