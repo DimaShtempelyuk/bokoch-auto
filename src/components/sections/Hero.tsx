@@ -2,6 +2,8 @@
 
 import styled from 'styled-components'
 import { theme } from '@/lib/theme'
+import { Phone } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
 
 const Section = styled.section`
   background: ${theme.colors.dark};
@@ -49,13 +51,16 @@ const Buttons = styled.div`
   flex-wrap: wrap;
 `
 
-const PrimaryBtn = styled.a`
+const PhoneBtn = styled.a`
   background: ${theme.colors.accent};
   color: ${theme.colors.dark};
   font-weight: 700;
   font-size: 16px;
   padding: 14px 32px;
   border-radius: ${theme.radius.sm};
+  display: flex;
+  align-items: center;
+  gap: 10px;
   transition: background 0.2s, transform 0.15s;
 
   &:hover {
@@ -64,18 +69,20 @@ const PrimaryBtn = styled.a`
   }
 `
 
-const SecondaryBtn = styled.a`
-  background: transparent;
+const WABtn = styled.a`
+  background: ${theme.colors.whatsapp};
   color: ${theme.colors.white};
-  font-weight: 600;
+  font-weight: 700;
   font-size: 16px;
   padding: 14px 32px;
   border-radius: ${theme.radius.sm};
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  transition: border-color 0.2s, transform 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s, transform 0.15s;
 
   &:hover {
-    border-color: rgba(255, 255, 255, 0.6);
+    background: ${theme.colors.whatsappDark};
     transform: translateY(-1px);
   }
 `
@@ -91,14 +98,12 @@ export default function Hero() {
           značky. Použité díly za rozumné ceny.
         </Subtitle>
         <Buttons>
-          <PrimaryBtn href="tel:+420608259151">📞 Zavolat</PrimaryBtn>
-          <SecondaryBtn
-            href="https://wa.me/420608259151"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            💬 WhatsApp
-          </SecondaryBtn>
+          <PhoneBtn href="tel:+420608259151">
+            <Phone size={18} strokeWidth={2} /> Zavolat
+          </PhoneBtn>
+          <WABtn href="https://wa.me/420608259151" target="_blank" rel="noopener noreferrer">
+            <FaWhatsapp size={20} /> WhatsApp
+          </WABtn>
         </Buttons>
       </Inner>
     </Section>

@@ -3,6 +3,7 @@
 import styled from 'styled-components'
 import { theme } from '@/lib/theme'
 import { useState } from 'react'
+import { FaWhatsapp } from 'react-icons/fa'
 
 const Nav = styled.nav`
   background: ${theme.colors.white};
@@ -66,23 +67,26 @@ const NavLink = styled.a`
   }
 `
 
-const CTAButton = styled.a`
-  background: ${theme.colors.accent};
-  color: ${theme.colors.dark};
+const WAButton = styled.a`
+  background: ${theme.colors.whatsapp};
+  color: ${theme.colors.white};
   font-weight: 700;
   font-size: 14px;
   padding: 10px 20px;
   border-radius: ${theme.radius.sm};
   transition: background 0.2s;
   white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 
   &:hover {
-    background: ${theme.colors.accentDark};
+    background: ${theme.colors.whatsappDark};
   }
 
   @media (max-width: 768px) {
     width: 100%;
-    text-align: center;
+    justify-content: center;
     padding: 12px 20px;
   }
 `
@@ -114,13 +118,13 @@ export default function Navbar() {
           <NavLink href="#sluzby" onClick={() => setOpen(false)}>Služby</NavLink>
           <NavLink href="#o-nas" onClick={() => setOpen(false)}>O nás</NavLink>
           <NavLink href="#kontakt" onClick={() => setOpen(false)}>Kontakt</NavLink>
-          <CTAButton
+          <WAButton
             href="https://wa.me/420608259151"
             target="_blank"
             rel="noopener noreferrer"
           >
-            💬 Napište na WhatsApp
-          </CTAButton>
+            <FaWhatsapp size={16} /> Napište na WhatsApp
+          </WAButton>
         </Links>
         <Hamburger onClick={() => setOpen(!open)} aria-label="Menu">
           {open ? '✕' : '☰'}

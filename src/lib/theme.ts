@@ -9,6 +9,8 @@ export const theme = {
     text: '#222222',
     textMuted: '#666666',
     border: '#E5E5E5',
+    whatsapp: '#25D366',
+    whatsappDark: '#1DA851',
   },
   fonts: {
     sans: "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
