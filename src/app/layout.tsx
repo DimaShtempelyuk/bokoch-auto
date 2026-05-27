@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import StyledComponentsRegistry from "@/lib/StyledComponentsRegistry";
+import CookieBanner from "@/components/CookieBanner";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin", "latin-ext"] });
@@ -51,9 +52,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Consent Mode v2 defaults — must run before gtag loads */}
+        <script dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('consent', 'default', { analytics_storage: 'denied' });
+        `}} />
       </head>
       <body>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
+        <CookieBanner />
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-XFXB7LKB9N" strategy="afterInteractive" />
         <Script id="ga-init" strategy="afterInteractive">{`
           window.dataLayer = window.dataLayer || [];
