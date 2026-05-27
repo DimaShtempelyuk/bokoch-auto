@@ -172,19 +172,18 @@ const InfoText = styled.p`
   gap: 8px;
 `
 
-const MapPlaceholder = styled.div`
-  background: ${theme.colors.white};
+const MapWrapper = styled.div`
   border-radius: ${theme.radius.md};
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${theme.colors.textMuted};
-  font-size: 14px;
-  border: 2px dashed ${theme.colors.border};
-  text-align: center;
-  padding: 20px;
-  line-height: 1.5;
+  overflow: hidden;
+  box-shadow: ${theme.shadow.card};
+  height: 240px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
 `
 
 export default function Contact() {
@@ -276,9 +275,14 @@ export default function Contact() {
               </InfoGroup>
             </InfoCard>
 
-            <MapPlaceholder>
-              🗺️ Mapa bude přidána po nastavení<br />Google Business Profile
-            </MapPlaceholder>
+            <MapWrapper>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2554.158334415262!2d14.671716813110528!3d50.19557127142594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470bf18864ffc649%3A0xc5b43889dc6b583b!2sAutoservis%20Bokoch!5e0!3m2!1sen!2scz!4v1779906161867!5m2!1sen!2scz"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </MapWrapper>
           </InfoCol>
         </Grid>
       </Inner>
