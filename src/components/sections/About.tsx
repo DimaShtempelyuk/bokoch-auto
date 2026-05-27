@@ -20,7 +20,7 @@ const Bio = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   align-items: center;
-  margin-bottom: 72px;
+  margin-bottom: 80px;
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
@@ -71,81 +71,138 @@ const Accent = styled.span`
   font-weight: 600;
 `
 
-const popAnim = keyframes`
-  0%   { transform: scale(1); }
-  30%  { transform: scale(1.1); }
-  60%  { transform: scale(0.93); }
-  80%  { transform: scale(1.03); }
-  100% { transform: scale(1); }
-`
-
-const fadeUp = keyframes`
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-`
+/* ── Bubbles ─────────────────────────────────────── */
 
 const ValuesRow = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 32px;
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
 `
 
-const Bubble = styled.button<{ $popping: boolean; $delay: number }>`
-  background: ${theme.colors.dark};
-  border: none;
-  border-radius: 24px;
-  padding: 36px 28px;
-  cursor: pointer;
-  text-align: center;
+const ValueItem = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  transition: box-shadow 0.2s, transform 0.2s;
-  animation: ${fadeUp} 0.5s ease both;
-  animation-delay: ${(p) => p.$delay}ms;
-
-  ${(p) =>
-    p.$popping &&
-    css`
-      animation: ${popAnim} 0.4s ease forwards;
-    `}
-
-  &:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
-    transform: translateY(-2px);
-  }
-
-  &:active {
-    transform: scale(0.97);
-  }
+  text-align: center;
 `
 
-const BubbleIcon = styled.div`
-  width: 52px;
-  height: 52px;
+const spinRainbow = keyframes`
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+`
+
+const bubblePop = keyframes`
+  0%   { transform: scale(1);    opacity: 1; }
+  18%  { transform: scale(1.14); opacity: 1; filter: brightness(1.3); }
+  32%  { transform: scale(1.38); opacity: 0.5; }
+  42%  { transform: scale(1.55); opacity: 0; }
+  43%  { transform: scale(0.1);  opacity: 0; }
+  68%  { transform: scale(1.06); opacity: 0.9; filter: brightness(1.1); }
+  100% { transform: scale(1);    opacity: 1; filter: brightness(1); }
+`
+
+const fadeUp = keyframes`
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+`
+
+const BubbleWrap = styled.div<{ $delay: number }>`
+  position: relative;
+  width: 160px;
+  height: 160px;
+  margin-bottom: 20px;
+  animation: ${fadeUp} 0.5s ease both;
+  animation-delay: ${(p) => p.$delay}ms;
+`
+
+const RainbowRing = styled.div`
+  position: absolute;
+  inset: -3px;
   border-radius: 50%;
-  background: rgba(245, 166, 35, 0.15);
+  background: conic-gradient(
+    rgba(255, 80,  80,  0.55),
+    rgba(255, 200, 50,  0.55),
+    rgba(80,  220, 130, 0.55),
+    rgba(80,  160, 255, 0.55),
+    rgba(200, 80,  255, 0.55),
+    rgba(255, 80,  80,  0.55)
+  );
+  animation: ${spinRainbow} 4s linear infinite;
+  z-index: 0;
+`
+
+const BubbleCircle = styled.div<{ $popped: boolean }>`
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${theme.colors.accent};
+  cursor: pointer;
+  z-index: 1;
+  overflow: hidden;
+
+  /* Soap film fill */
+  background: radial-gradient(
+    circle at 34% 28%,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(215, 238, 255, 0.45) 22%,
+    rgba(245, 215, 255, 0.25) 48%,
+    rgba(255, 228, 185, 0.28) 68%,
+    rgba(200, 238, 255, 0.18) 100%
+  );
+
+  /* Bright rim + inner glow */
+  box-shadow:
+    inset 3px 3px 10px rgba(255, 255, 255, 0.85),
+    inset -3px -3px 8px  rgba(190, 215, 255, 0.4),
+    inset 0   0   28px  rgba(255, 255, 255, 0.35);
+
+  /* Highlight spot */
+  &::after {
+    content: '';
+    position: absolute;
+    top: 16%;
+    left: 20%;
+    width: 30%;
+    height: 16%;
+    background: radial-gradient(ellipse, rgba(255,255,255,0.95) 0%, transparent 100%);
+    border-radius: 50%;
+    transform: rotate(-35deg);
+    pointer-events: none;
+  }
+
+  ${(p) =>
+    p.$popped &&
+    css`
+      animation: ${bubblePop} 0.58s cubic-bezier(0.36, 0.07, 0.19, 0.97) forwards;
+    `}
+`
+
+const BubbleIcon = styled.div`
+  color: ${theme.colors.dark};
+  opacity: 0.75;
+  z-index: 1;
+  pointer-events: none;
 `
 
 const BubbleTitle = styled.p`
   font-size: 16px;
   font-weight: 700;
-  color: ${theme.colors.white};
+  color: ${theme.colors.text};
+  margin-bottom: 6px;
 `
 
 const BubbleText = styled.p`
   font-size: 13px;
-  color: rgba(255, 255, 255, 0.55);
+  color: ${theme.colors.textMuted};
   line-height: 1.6;
+  max-width: 200px;
 `
 
 const values = [
@@ -177,22 +234,27 @@ function ValueBubble({
   text: string
   delay: number
 }) {
-  const [popping, setPopping] = useState(false)
+  const [popped, setPopped] = useState(false)
 
   const handleClick = () => {
-    if (popping) return
-    setPopping(true)
-    setTimeout(() => setPopping(false), 420)
+    if (popped) return
+    setPopped(true)
+    setTimeout(() => setPopped(false), 600)
   }
 
   return (
-    <Bubble $popping={popping} $delay={delay} onClick={handleClick}>
-      <BubbleIcon>
-        <Icon size={24} strokeWidth={1.75} />
-      </BubbleIcon>
+    <ValueItem>
+      <BubbleWrap $delay={delay}>
+        <RainbowRing />
+        <BubbleCircle $popped={popped} onClick={handleClick}>
+          <BubbleIcon>
+            <Icon size={32} strokeWidth={1.5} />
+          </BubbleIcon>
+        </BubbleCircle>
+      </BubbleWrap>
       <BubbleTitle>{title}</BubbleTitle>
       <BubbleText>{text}</BubbleText>
-    </Bubble>
+    </ValueItem>
   )
 }
 
@@ -229,7 +291,7 @@ export default function About() {
               icon={v.icon}
               title={v.title}
               text={v.text}
-              delay={i * 120}
+              delay={i * 130}
             />
           ))}
         </ValuesRow>
