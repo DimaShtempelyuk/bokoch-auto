@@ -31,7 +31,7 @@ const jsonLd = {
     longitude: 14.671716813110528,
   },
   telephone: "+420608259151",
-  url: "https://bokoch-auto.vercel.app",
+  url: "https://autoservis-bokoch.cz",
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
