@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 import { theme } from '@/lib/theme'
-import { useState, FormEvent } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 
 const Section = styled.section`
   background: ${theme.colors.lightBg};
@@ -187,25 +187,7 @@ const MapWrapper = styled.div`
 `
 
 export default function Contact() {
-  const [sent, setSent] = useState(false)
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const data = new FormData(form)
-
-    // TODO: replace REPLACE_ME with your Formspree form ID from formspree.io
-    const res = await fetch('https://formspree.io/f/REPLACE_ME', {
-      method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' },
-    })
-
-    if (res.ok) {
-      setSent(true)
-      form.reset()
-    }
-  }
+  const [state, handleSubmit] = useForm('xpqnkdvk')
 
   return (
     <Section id="kontakt">
@@ -215,13 +197,14 @@ export default function Contact() {
         <Grid>
           <FormCard>
             <FormTitle>Napište nám</FormTitle>
-            {sent ? (
+            {state.succeeded ? (
               <SuccessMsg>✓ Zpráva odeslána! Ozveme se co nejdříve.</SuccessMsg>
             ) : (
               <form onSubmit={handleSubmit}>
                 <Field>
                   <Label htmlFor="name">Jméno</Label>
                   <Input id="name" name="name" type="text" placeholder="Jan Novák" required />
+                  <ValidationError field="name" errors={state.errors} />
                 </Field>
                 <Field>
                   <Label htmlFor="contact">Telefon nebo e-mail</Label>
@@ -232,6 +215,7 @@ export default function Contact() {
                     placeholder="+420 600 000 000"
                     required
                   />
+                  <ValidationError field="contact" errors={state.errors} />
                 </Field>
                 <Field>
                   <Label htmlFor="message">Zpráva</Label>
@@ -242,7 +226,9 @@ export default function Contact() {
                     required
                   />
                 </Field>
-                <SubmitBtn type="submit">Odeslat zprávu</SubmitBtn>
+                <SubmitBtn type="submit" disabled={state.submitting}>
+                  {state.submitting ? 'Odesílám...' : 'Odeslat zprávu'}
+                </SubmitBtn>
               </form>
             )}
           </FormCard>
