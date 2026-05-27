@@ -60,7 +60,7 @@ const IconWrap = styled.div`
   width: 48px;
   height: 48px;
   border-radius: ${theme.radius.sm};
-  background: rgba(245, 166, 35, 0.12);
+  background: ${theme.colors.dark};
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,14 +93,14 @@ const services = [
     text: 'Profesionální lakování, opravy koroze a karoserní práce.',
   },
   {
-    icon: CircleDot,
-    title: 'Přezutí a uskladnění pneumatik',
-    text: 'Výměna kol, vyvažování a sezonní uskladnění pneumatik.',
-  },
-  {
     icon: Package,
     title: 'Použité náhradní díly',
     text: 'Kvalitní použité díly pro různé značky a modely za dostupné ceny.',
+  },
+  {
+    icon: CircleDot,
+    title: 'Přezutí a uskladnění pneumatik',
+    text: 'Výměna kol, vyvažování a sezonní uskladnění pneumatik.',
   },
   {
     icon: Car,
