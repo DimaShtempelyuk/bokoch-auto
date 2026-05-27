@@ -113,8 +113,8 @@ const fadeUp = keyframes`
 
 const BubbleWrap = styled.div<{ $delay: number }>`
   position: relative;
-  width: 160px;
-  height: 160px;
+  width: 184px;
+  height: 184px;
   margin-bottom: 20px;
   animation: ${fadeUp} 0.5s ease both;
   animation-delay: ${(p) => p.$delay}ms;
@@ -248,7 +248,7 @@ function ValueBubble({
         <RainbowRing />
         <BubbleCircle $popped={popped} onClick={handleClick}>
           <BubbleIcon>
-            <Icon size={32} strokeWidth={1.5} />
+            <Icon size={52} strokeWidth={1.4} />
           </BubbleIcon>
         </BubbleCircle>
       </BubbleWrap>
