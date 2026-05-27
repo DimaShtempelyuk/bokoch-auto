@@ -53,7 +53,7 @@ export default function TopBar() {
             💬 WhatsApp
           </Link>
         </Left>
-        <span>Po–Pá: 8:00–18:00&nbsp;&nbsp;|&nbsp;&nbsp;So: 9:00–13:00</span>
+        <span>Po–Pá: 8:00–17:00&nbsp;&nbsp;|&nbsp;&nbsp;So: podle domluvy</span>
       </Inner>
     </Bar>
   )

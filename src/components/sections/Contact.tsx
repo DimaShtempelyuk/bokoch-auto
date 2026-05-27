@@ -270,8 +270,9 @@ export default function Contact() {
               </InfoGroup>
               <InfoGroup>
                 <InfoLabel>Provozní doba</InfoLabel>
-                <InfoText>🕐 Po–Pá: 8:00–18:00</InfoText>
-                <InfoText style={{ marginTop: 4 }}>🕐 So: 9:00–13:00</InfoText>
+                <InfoText>🕐 Po–Pá: 8:00–17:00</InfoText>
+                <InfoText style={{ marginTop: 4 }}>🕐 So: podle domluvy</InfoText>
+                <InfoText style={{ marginTop: 4 }}>🕐 Ne: zavřeno</InfoText>
               </InfoGroup>
             </InfoCard>
 
