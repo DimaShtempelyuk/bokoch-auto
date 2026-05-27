@@ -13,9 +13,44 @@ export const metadata: Metadata = {
     "autoservis, Brandýs nad Labem, opravy aut, lakování, náhradní díly, pneumatiky",
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "AutoRepair",
+  name: "Autoservis Bokoch",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Mariánské nám. 4/3",
+    addressLocality: "Brandýs nad Labem-Stará Boleslav",
+    postalCode: "250 01",
+    addressCountry: "CZ",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 50.19557127142594,
+    longitude: 14.671716813110528,
+  },
+  telephone: "+420608259151",
+  url: "https://bokoch-auto.vercel.app",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:00",
+    },
+  ],
+  priceRange: "$$",
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="cs" className={inter.className}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <StyledComponentsRegistry>{children}</StyledComponentsRegistry>
       </body>
