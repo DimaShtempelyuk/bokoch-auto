@@ -2,7 +2,7 @@
 
 import styled from 'styled-components'
 import { theme } from '@/lib/theme'
-import { useState, FormEvent } from 'react'
+import { useForm, ValidationError } from '@formspree/react'
 
 const Section = styled.section`
   background: ${theme.colors.lightBg};
@@ -172,41 +172,22 @@ const InfoText = styled.p`
   gap: 8px;
 `
 
-const MapPlaceholder = styled.div`
-  background: ${theme.colors.white};
+const MapWrapper = styled.div`
   border-radius: ${theme.radius.md};
-  height: 200px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${theme.colors.textMuted};
-  font-size: 14px;
-  border: 2px dashed ${theme.colors.border};
-  text-align: center;
-  padding: 20px;
-  line-height: 1.5;
+  overflow: hidden;
+  box-shadow: ${theme.shadow.card};
+  height: 240px;
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
 `
 
 export default function Contact() {
-  const [sent, setSent] = useState(false)
-
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const form = e.currentTarget
-    const data = new FormData(form)
-
-    // TODO: replace REPLACE_ME with your Formspree form ID from formspree.io
-    const res = await fetch('https://formspree.io/f/REPLACE_ME', {
-      method: 'POST',
-      body: data,
-      headers: { Accept: 'application/json' },
-    })
-
-    if (res.ok) {
-      setSent(true)
-      form.reset()
-    }
-  }
+  const [state, handleSubmit] = useForm('xpqnkdvk')
 
   return (
     <Section id="kontakt">
@@ -216,13 +197,14 @@ export default function Contact() {
         <Grid>
           <FormCard>
             <FormTitle>Napište nám</FormTitle>
-            {sent ? (
+            {state.succeeded ? (
               <SuccessMsg>✓ Zpráva odeslána! Ozveme se co nejdříve.</SuccessMsg>
             ) : (
               <form onSubmit={handleSubmit}>
                 <Field>
                   <Label htmlFor="name">Jméno</Label>
                   <Input id="name" name="name" type="text" placeholder="Jan Novák" required />
+                  <ValidationError field="name" errors={state.errors} />
                 </Field>
                 <Field>
                   <Label htmlFor="contact">Telefon nebo e-mail</Label>
@@ -233,6 +215,7 @@ export default function Contact() {
                     placeholder="+420 600 000 000"
                     required
                   />
+                  <ValidationError field="contact" errors={state.errors} />
                 </Field>
                 <Field>
                   <Label htmlFor="message">Zpráva</Label>
@@ -243,7 +226,9 @@ export default function Contact() {
                     required
                   />
                 </Field>
-                <SubmitBtn type="submit">Odeslat zprávu</SubmitBtn>
+                <SubmitBtn type="submit" disabled={state.submitting}>
+                  {state.submitting ? 'Odesílám...' : 'Odeslat zprávu'}
+                </SubmitBtn>
               </form>
             )}
           </FormCard>
@@ -252,32 +237,38 @@ export default function Contact() {
             <InfoCard>
               <InfoGroup>
                 <InfoLabel>Telefon</InfoLabel>
-                <InfoLink href="tel:+420000000000">📞 +420 000 000 000</InfoLink>
+                <InfoLink href="tel:+420608259151">📞 +420 608 259 151</InfoLink>
               </InfoGroup>
               <InfoGroup>
                 <InfoLabel>WhatsApp</InfoLabel>
                 <InfoLink
-                  href="https://wa.me/420000000000"
+                  href="https://wa.me/420608259151"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  💬 +420 000 000 000
+                  💬 +420 608 259 151
                 </InfoLink>
               </InfoGroup>
               <InfoGroup>
                 <InfoLabel>Adresa</InfoLabel>
-                <InfoText>📍 Brandýs nad Labem — [doplnit ulici]</InfoText>
+                <InfoText>📍 Mariánské nám. 4/3, 250 01 Brandýs nad Labem-Stará Boleslav</InfoText>
               </InfoGroup>
               <InfoGroup>
                 <InfoLabel>Provozní doba</InfoLabel>
-                <InfoText>🕐 Po–Pá: 8:00–18:00</InfoText>
-                <InfoText style={{ marginTop: 4 }}>🕐 So: 9:00–13:00</InfoText>
+                <InfoText>🕐 Po–Pá: 8:00–17:00</InfoText>
+                <InfoText style={{ marginTop: 4 }}>🕐 So: podle domluvy</InfoText>
+                <InfoText style={{ marginTop: 4 }}>🕐 Ne: zavřeno</InfoText>
               </InfoGroup>
             </InfoCard>
 
-            <MapPlaceholder>
-              🗺️ Mapa bude přidána po nastavení<br />Google Business Profile
-            </MapPlaceholder>
+            <MapWrapper>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2554.158334415262!2d14.671716813110528!3d50.19557127142594!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470bf18864ffc649%3A0xc5b43889dc6b583b!2sAutoservis%20Bokoch!5e0!3m2!1sen!2scz!4v1779906161867!5m2!1sen!2scz"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </MapWrapper>
           </InfoCol>
         </Grid>
       </Inner>

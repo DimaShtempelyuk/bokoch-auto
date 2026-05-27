@@ -108,14 +108,14 @@ export default function Navbar() {
     <Nav>
       <Inner>
         <Logo href="#">
-          <span>Vasyl</span> Auto
+          <span>Autoservis</span> Bokoch
         </Logo>
         <Links $open={open}>
           <NavLink href="#sluzby" onClick={() => setOpen(false)}>Služby</NavLink>
           <NavLink href="#o-nas" onClick={() => setOpen(false)}>O nás</NavLink>
           <NavLink href="#kontakt" onClick={() => setOpen(false)}>Kontakt</NavLink>
           <CTAButton
-            href="https://wa.me/420000000000"
+            href="https://wa.me/420608259151"
             target="_blank"
             rel="noopener noreferrer"
           >
