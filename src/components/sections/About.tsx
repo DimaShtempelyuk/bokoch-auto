@@ -4,6 +4,7 @@ import styled, { keyframes, css } from 'styled-components'
 import { theme } from '@/lib/theme'
 import { ShieldCheck, Tag, Zap } from 'lucide-react'
 import { useState } from 'react'
+import Image from 'next/image'
 
 const Section = styled.section`
   background: ${theme.colors.white};
@@ -29,18 +30,11 @@ const Bio = styled.div`
   }
 `
 
-const PhotoPlaceholder = styled.div`
-  background: ${theme.colors.lightBg};
+const PhotoWrap = styled.div`
+  position: relative;
   border-radius: ${theme.radius.md};
   aspect-ratio: 4 / 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: ${theme.colors.textMuted};
-  font-size: 14px;
-  border: 2px dashed ${theme.colors.border};
-  text-align: center;
-  padding: 20px;
+  overflow: hidden;
 `
 
 const Eyebrow = styled.p`
@@ -263,7 +257,15 @@ export default function About() {
     <Section id="o-nas">
       <Inner>
         <Bio>
-          <PhotoPlaceholder>📷 Foto dílny / Vasyla</PhotoPlaceholder>
+          <PhotoWrap>
+            <Image
+              src="/images/about-workshop.jpg"
+              alt="Vasyl Bokoch při práci v autoservisu"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+            />
+          </PhotoWrap>
           <div>
             <Eyebrow>O nás</Eyebrow>
             <Title>Mechanikem z vášně, profesionálem z praxe</Title>
