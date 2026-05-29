@@ -108,7 +108,7 @@ export default function Hero() {
   return (
     <Section>
       <BgImage
-        src="/images/hero-exterior.jpg"
+        src="/hero-exterior.jpg"
         alt="Autoservis Bokoch — dílna v Brandýse nad Labem"
         fill
         priority

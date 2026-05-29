@@ -259,7 +259,7 @@ export default function About() {
         <Bio>
           <PhotoWrap>
             <Image
-              src="/images/about-workshop.jpg"
+              src="/about-workshop.jpg"
               alt="Vasyl Bokoch při práci v autoservisu"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
