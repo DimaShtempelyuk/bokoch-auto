@@ -4,17 +4,34 @@ import styled from 'styled-components'
 import { theme } from '@/lib/theme'
 import { Phone } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
+import Image from 'next/image'
 
 const Section = styled.section`
-  background: ${theme.colors.dark};
+  position: relative;
   color: ${theme.colors.white};
   padding: 100px 24px 110px;
   text-align: center;
+  overflow: hidden;
+`
+
+const BgImage = styled(Image)`
+  object-fit: cover;
+  object-position: center 60%;
+  z-index: 0;
+`
+
+const Overlay = styled.div`
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.62);
+  z-index: 1;
 `
 
 const Inner = styled.div`
   max-width: 720px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
 `
 
 const Eyebrow = styled.p`
@@ -90,6 +107,14 @@ const WABtn = styled.a`
 export default function Hero() {
   return (
     <Section>
+      <BgImage
+        src="/hero-exterior.jpg"
+        alt="Autoservis Bokoch — dílna v Brandýse nad Labem"
+        fill
+        priority
+        sizes="100vw"
+      />
+      <Overlay />
       <Inner>
         <Eyebrow>Brandýs nad Labem</Eyebrow>
         <Title>Autoservis a náhradní díly pro vaše auto</Title>
